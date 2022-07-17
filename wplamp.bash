@@ -143,7 +143,7 @@ echo "Completed!"
 echo "Wordpress installation..."
 sudo wget -c http://wordpress.org/latest.tar.gz
 sudo tar -xzvf latest.tar.gz
-sudo rsync -av $currentdir/r/wordpress/* /var/www/$hostname/*
+sudo mv wordpress/* /var/www/$hostname/
 sudo chown -R www-data:www-data /var/www/$hostname
 sudo chmod -R 755 /var/www/$hostname
 sudo rm -rf latest.tar.gz wordpress
