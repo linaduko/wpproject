@@ -88,12 +88,19 @@ sudo mysql_secure_installation
 echo "Completed!"
 
 #Запрос данных от пользователя для настройки СУБД
-echo "The system is asking for some data..."
+#echo "The system is asking for some data..."
 read -p "Enter MariaDB root-user password: " pmdb
-read -p "Enter a name for the new mariaDB database: " newdb
-read -p "Enter username of the new database: " userdb
-read -p "Enter the password for user of the new database: " userpass
-echo "Data saved in the system!"
+#read -p "Enter a name for the new mariaDB database: " newdb
+newdb=$(echo "wordpress")
+echo "Created new database - $newdb"
+#read -p "Enter username of the new database: " userdb
+userdb=$(echo "sadmindb")
+echo "Created wordpress admin - $userdb"
+#read -p "Enter the password for user of the new database: " userpass
+userpass=$(echo "Aa123456")
+echo "WARNING: Created standard password: $userpass. Please, change the password after installation!"
+#echo "Data saved in the system!"
+
 
 #Создание базы данных, пользователя БД и определение его прав
 echo "Create a new database and a user for it..."
