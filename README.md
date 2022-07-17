@@ -13,8 +13,11 @@
 <i><b>WordPress</b> is one of the most popular source code systems for creating websites and blogs on the Internet today.</i>
 <i>After the completion of the <b>wplamp.bash</b> script, it was necessary to supplement it with a file backup script and merge everything. The guys will talk about this later. </i>
 <p></p>
-<p style="color: #5e9ca0;"> ~ Max's comment </p>
-<i>enter info</i>
+<p> style="color: #5e9ca0;"> ~ Max's comment </p>
+<p>In this project we use script, that makes backup of MySQL database and files of site from /var/www/* (file backupdb.sh).</p>
 <p></p>
+<p>We also used the task scheduler **cron** for daily backups in automatic mode (file cron.sh).</p>
 <p style="color: #5e9ca0;"> ~ Stas's comment </p>
 <i>enter info</i>
+<p></p>
+<p>We hope you'll enjoy our work!😉</p>
