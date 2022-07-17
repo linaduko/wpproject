@@ -4,8 +4,8 @@
 <p> ↘ Download the repository to your PC. </p>
 <p>  🚀 Next, run the start script "start_wpproject.sh". </p>
 <p> 🚬 Enjoy installation!</p>
-<hr style="border-style: dashed;">
-<h3 style="color: #5e9ca0;">What about our code? We'll tell you everything now! ☺</h3>
+
+<h2 style="color: #5e9ca0;">What about our code? We'll tell you everything now! </h2>
 <p style="color: #5e9ca0;"> ❤ Lina's comment </p>
 <i>Our project is based on my LAMP & Wordpress setup script. </i>
 <i><b>LAMP</b> is an acronym denoting ~ <b>Linux, Apache, MySQL, PHP</b> ~ one of the most common software stacks for many of the web's most popular applications. </i>  
@@ -20,4 +20,3 @@ We also used the task scheduler **cron** for daily backups in automatic mode (fi
 <p style="color: #5e9ca0;"> 🥔 Stas's comment </p>
 <i>For convenience, we have combined the entire process into 1 script. The script works - you rest!</i>
 <p></p>
-<p>We hope you'll enjoy our work!😉</p>
