@@ -1,56 +1,74 @@
 #!/bin/bash
-echo Перед установкой, убедитесь, что ваш пользователь обладает правами sudo
-read -p "Ваш пользователь обладает правами sudo? [y/n]: " ans
-echo $ans
+
+#Запрос на наличие прав суперпользователя у текущего пользователя системы
+echo "Before installation make sure that your user has sudo rights"
+read -p "Does your user have sudo rights? [y/n]: " ans
+
 if  [ "$ans" = "y" ]; then
-        echo "ok"
+        echo "Start wpproject script!"
 else
-        echo "warning"
+        echo "Warning, get root rights or check the correctness of the entered data and try again"
         exit 1
 fi
-echo Обновление данных...
+
+#Обновление базы данных доступных пакетов
+echo "Data update..."
 sudo apt update
 sudo apt -y upgrade
-echo Обновление завершено 
+echo "Completed!"
 
-echo Установка Apache...
-sudo apt install -y apache2 apache2-utils 
+#Установка Apache
+echo "Apache installation..."
+sudo apt install -y apache2 apache2-utils
 sudo systemctl enable apache2
 sudo systemctl start apache2
-echo Установка завершена 
+echo "Completed!"
 
-echo Установка UFW...
+#Установка UWF - инструментария для настройки и управления брандмауэром
+echo "UFW installation..."
 sudo apt install -y ufw
-echo Установка завершена 
+echo "Completed!"
 
-echo Установка дефолтных настройки UFW...
+#Установка UWF - значений по умолчанию
+echo "UWF default setting..."
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-echo Настройка завершена 
+echo "Completed!"
 
-echo Настройка UFW...
+#Специфическая настройка UWF
+echo "UFW setting..."
 sudo ufw allow ssh
 sudo ufw allow http
 sudo ufw allow https
-echo Настройка завершена 
+echo "Completed!"
 
-echo Включение UFW...
-sudo ufw enable 
-echo Включение завершено 
+#Включение UWF
+echo "Enable UWF..."
+sudo ufw enable
+echo "Completed!"
 
+#Создание директории для хранения файлов буудщего сайта
 hostname=$(hostname)
-echo Создание директории сайта...
+echo "Creating a site directory..."
 sudo mkdir -p /var/www/$hostname
-echo Директория создана если не существовала 
+echo "The directory was created if didn't exist..."
 
-echo Установка прав пользователя на директорию сайта... 
+#Добавление информации в файл /etc/hosts
+echo "Adding information to a file /etc/hosts"
+sudo -- sh -c "echo 127.0.0.1 $hostname >> /etc/hosts"
+echo "Completed!"
+
+#Настройка текущего пользователя для директории сайта
+echo "Setting user rights to the site directory..."
 sudo chown -R $USER:$USER /var/www/$hostname
 sudo chmod -R 755 /var/www/$hostname
-echo Вы являетесь владельцем директории нового сайта 
+echo "Completed!" 
 
-echo Создание конфигурационного файла...
-touch $hostname.conf
-cat > $hostname.conf << EOF
+#Сoздание конфигурационного файла
+echo "Creation a configuration file..."
+currentdir=$(pwd)
+touch $currentdir/$hostname.conf
+cat > $currentdir/$hostname.conf << EOF
 <VirtualHost *:80>
     ServerAdmin $USER@localhost
     ServerName $hostname
@@ -60,61 +78,100 @@ cat > $hostname.conf << EOF
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOF
-sudo mv ~/$hostname.conf /etc/apache2/sites-available/$hostname.conf
-echo Создание конфигурационного файла завершено 
+sudo mv $currentdir/$hostname.conf /etc/apache2/sites-available/$hostname.conf
+echo "Completed!"
 
-echo Установка базы данных MariaDB...
+#echo "Creation a configuration file..."
+#touch $hostname.conf
+#cat > $hostname.conf << EOF
+#<VirtualHost *:80>
+#    ServerAdmin $USER@localhost
+#    ServerName $hostname
+#    ServerAlias $hostname
+#    DocumentRoot /var/www/$hostname
+#    ErrorLog ${APACHE_LOG_DIR}/error.log
+#    CustomLog ${APACHE_LOG_DIR}/access.log combined
+#</VirtualHost>
+#EOF
+#sudo mv ~/$hostname.conf /etc/apache2/sites-available/$hostname.conf
+#echo "Completed!"
+
+#Установка СУБД MariaDB
+echo "MariaDB installation"
 sudo apt install -y mariadb-client mariadb-server
 sudo mysql_secure_installation
-echo Установка завершена 
+echo "Completed!"
 
-echo Системе требуются некоторые данные...
-read -p "Введите пароль пользователя mariaDB (определен при установке): " pmdb
-read -p "Введите название базы данных mariaDB: " newdb
-read -p "Введите имя пользователя новой базы данных: " userdb
-read -p "Введите пароль пользователя новой базы данных: " userpass
-echo Данные записаны в систему 
+#Запрос данных от пользователя для настройки СУБД
+echo "The system is asking for some data..."
+read -p "Enter MariaDB root-user password: " pmdb
+read -p "Enter a name for the new mariaDB database: " newdb
+read -p "Enter username of the new database: " userdb
+read -p "Enter the password for user of the new database: " userpass
+echo "Data saved in the system!"
 
-echo Создание нового пользователя и базу данных...
+#Создание базы данных, пользователя БД и определение его прав
+echo "Create a new database and a user for it..."
 sudo mysql -uroot -p$pmdb -e "CREATE DATABASE $newdb"
 sudo mysql -uroot -p$pmdb -e "CREATE USER '$userdb'@'localhost' IDENTIFIED BY '$userpass'; GRANT ALL PRIVILEGES ON $newdb.* TO '$userdb'@'localhost'; FLUSH PRIVILEGES;"
-echo Создание завершено 
+echo "Completed!"
 
-echo Установка PHP...
+#Установка PHP
+echo "PHP installation..."
 sudo apt install -y php7.4 php7.4-mysql libapache2-mod-php7.4 php7.4-cli php7.4-cgi php7.4-gd
-echo Установка завершена 
+echo "Completed!"
 
-echo Создание стартового файла php...
-sudo touch info.php
+#Создание стартового php-файла (anyone directory ver.)
+echo "Creating a start php file..."
+sudo touch $currentdir/info.php
 cat > info.php << EOF
 <?php
 phpinfo();
 ?>
 EOF
-sudo mv ~/info.php /var/www/$hostname/info.php
-echo Создание файла завершено 
+sudo mv $currentdir/info.php /var/www/$hostname/info.php
+echo "Completed!"
 
-echo Подключение сайта...
+
+#Создание стартового php-файла (home directory ver.)
+#echo "Creating a start php file..."
+#sudo touch info.php
+#cat > info.php << EOF
+#<?php
+#phpinfo();
+#?>
+#EOF
+#sudo mv ~/info.php /var/www/$hostname/info.php
+#echo "Completed!"
+
+#Подключение нового сайта
+echo "Site connection..."
 sudo a2ensite $hostname
-echo Подключено 
+echo "Completed!"
 
-echo Перезагрузка Apache...
+#Перезапуск Apache
+echo "Restart Apache..."
 sudo systemctl restart apache2
-echo ОК 
+echo "Completed!"
 
-echo Выключение дефолтного сайта...
+#Отключение дефолтного сайта
+echo "Disabling the default site..."
 sudo a2dissite 000-default.conf
 sudo apache2ctl configtest
 sudo a2enmod rewrite
-echo ОК 
+echo "Completed!"
 
-echo Перезагружаем Apache...
+#Перезапуск Apache
+echo "Restart Apache..."
 sudo systemctl restart apache2
-echo ОК 
+echo "Completed!"
 
-echo Начинаем установку Wordpress...
+#Установка Wordpress
+echo "Wordpress installation..."
 sudo wget -c http://wordpress.org/latest.tar.gz
 sudo tar -xzvf latest.tar.gz
-sudo rsync -av wordpress/* /var/www/$hostnamename.* 
-sudo chown -R www-data:www-data /var/www/$hostnamename
-sudo chmod -R 755 /var/www/$hostnamename
+sudo rsync -av $currentdir/wordpress/* /var/www/$hostname/*
+#sudo rsync -av wordpress/* /var/www/$hostname/*
+sudo chown -R www-data:www-data /var/www/$hostname
+sudo chmod -R 755 /var/www/$hostname
+echo "Completed!"
