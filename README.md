@@ -17,7 +17,7 @@
 <p>In this project we use script, that makes backup of MySQL database and files of site from /var/www/* (file backupdb.sh).
 We also used the task scheduler **cron** for daily backups in automatic mode (file cron.sh).</p>
 <p></p>
-<p style="color: #5e9ca0;"> ~ Stas's comment </p>
-<i>enter info</i>
+<p style="color: #5e9ca0;"> 🥔 Stas's comment </p>
+<i>For convenience, we have combined the entire process into 1 script. The script works - you rest!</i>
 <p></p>
 <p>We hope you'll enjoy our work!😉</p>
