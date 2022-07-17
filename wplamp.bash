@@ -81,21 +81,6 @@ EOF
 sudo mv $currentdir/$hostname.conf /etc/apache2/sites-available/$hostname.conf
 echo "Completed!"
 
-#echo "Creation a configuration file..."
-#touch $hostname.conf
-#cat > $hostname.conf << EOF
-#<VirtualHost *:80>
-#    ServerAdmin $USER@localhost
-#    ServerName $hostname
-#    ServerAlias $hostname
-#    DocumentRoot /var/www/$hostname
-#    ErrorLog ${APACHE_LOG_DIR}/error.log
-#    CustomLog ${APACHE_LOG_DIR}/access.log combined
-#</VirtualHost>
-#EOF
-#sudo mv ~/$hostname.conf /etc/apache2/sites-available/$hostname.conf
-#echo "Completed!"
-
 #Установка СУБД MariaDB
 echo "MariaDB installation"
 sudo apt install -y mariadb-client mariadb-server
@@ -131,18 +116,6 @@ phpinfo();
 EOF
 sudo mv $currentdir/info.php /var/www/$hostname/info.php
 echo "Completed!"
-
-
-#Создание стартового php-файла (home directory ver.)
-#echo "Creating a start php file..."
-#sudo touch info.php
-#cat > info.php << EOF
-#<?php
-#phpinfo();
-#?>
-#EOF
-#sudo mv ~/info.php /var/www/$hostname/info.php
-#echo "Completed!"
 
 #Подключение нового сайта
 echo "Site connection..."
