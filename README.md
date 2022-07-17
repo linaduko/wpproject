@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/101510056/179406119-32c01441-57c0-43b2-aa69-1284dc3f8c63.png">
 <h2 style="color: #2e6c80;">How to use the wpproject:</h2>
 <p> ↘ Download the repository to your PC. </p>
-<p>  🚀 Next, run the start script "...". </p>
+<p>  🚀 Next, run the start script "start_wpproject.sh". </p>
 <p> 🚬 Enjoy installation!</p>
 <hr style="border-style: dashed;">
 <h3 style="color: #5e9ca0;">What about our code? We'll tell you everything now! ☺</h3>
