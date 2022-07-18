@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hostname='test.site'
+hostname=$(hostname)
 newdb='wordpress' #Имя базы данных 
 userdb='sadmindb' #Имя пользователя базы данных
 userpass='Aa123456' #Пароль от базы данных
