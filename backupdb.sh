@@ -39,3 +39,4 @@ echo "[+++++++++-][`date +%F--%H-%M`] Stat datadir space (USED): `du -h $DATADIR
 echo "[+++++++++-][`date +%F--%H-%M`] Free HDD space: `df -h /home|tail -n1|awk '{print $4}'`"
 echo "[++++++++++][`date +%F--%H-%M`] All operations completed successfully!"
 exit 0
+
