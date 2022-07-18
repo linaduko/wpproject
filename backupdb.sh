@@ -1,20 +1,9 @@
 #!/bin/bash
 
 actualdir=$(pwd)
-.$actualdir/wplamp.bash
+. $actualdir/perem.sh
 
-PROJNAME=WPLAMPBACKUP #Имя проекта
-CHARSET=utf8 #Кодировка базы данных (utf8)
-DBNAME=$newdb #Имя базы данных для резервного копирования
-DBFILENAME="backup_$hostname" #Имя дампа базы данных
-ARFILENAME=backupdb #Имя архива с файлами
-HOST=localhost #Хост MySQL
-USER=$userdb #Имя пользователя базы данных
-PASSWD=$passwd #Пароль от базы данных
-DATADIR=/home/backup #Путь к каталогу где будут храниться резервные копии
-SRCFILES=/var/www/$hostname #Путь к каталогу файлов для архивирования
-PREFIX=`date +%F` #Префикс по дате для структурирования резервных копий
-
+mkdir $DATADIR 2> /dev/null
 #start backup
 echo "[--------------------------------[`date +%F--%H-%M`]--------------------------------]"
 echo "[----------][`date +%F--%H-%M`] Run the backup script..."
