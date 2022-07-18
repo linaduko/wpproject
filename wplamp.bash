@@ -1,5 +1,8 @@
 #!/bin/bash
 
+actualdir=$(pwd)
+. /$actualdir/perem.sh
+
 #Запрос на наличие прав суперпользователя у текущего пользователя системы
 echo "Before installation make sure that your user has sudo rights"
 read -p "Does your user have sudo rights? [y/n]: " ans
@@ -89,16 +92,16 @@ echo "Completed!"
 
 #Запрос данных от пользователя для настройки СУБД
 #echo "The system is asking for some data..."
-read -p "Enter MariaDB root-user password: " pmdb
+#read -p "Enter MariaDB root-user password: " pmdb
 #read -p "Enter a name for the new mariaDB database: " newdb
-newdb=$(echo "wordpress")
-echo "Created new database - $newdb"
+#newdb=$(echo "wordpress")
+#echo "Created new database - $newdb"
 #read -p "Enter username of the new database: " userdb
-userdb=$(echo "sadmindb")
-echo "Created wordpress admin - $userdb"
+#userdb=$(echo "sadmindb")
+#echo "Created wordpress admin - $userdb"
 #read -p "Enter the password for user of the new database: " userpass
-userpass=$(echo "Aa123456")
-echo "WARNING: Created standard password: $userpass. Please, change the password after installation!"
+#userpass=$(echo "Aa123456")
+#echo "WARNING: Created standard password: $userpass. Please, change the password after installation!"
 #echo "Data saved in the system!"
 
 
