@@ -1,5 +1,8 @@
 #!/bin/bash
 
+actualdir=$(pwd)
+. $actualdir/perem.sh
+
 #Запрос на наличие прав суперпользователя у текущего пользователя системы
 echo "Before installation make sure that your user has sudo rights"
 read -p "Does your user have sudo rights? [y/n]: " ans
@@ -48,7 +51,6 @@ sudo ufw enable
 echo "Completed!"
 
 #Создание директории для хранения файлов буудщего сайта
-hostname=$(hostname)
 echo "Creating a site directory..."
 sudo mkdir -p /var/www/$hostname
 echo "The directory was created if didn't exist..."
@@ -91,13 +93,13 @@ echo "Completed!"
 #echo "The system is asking for some data..."
 read -p "Enter MariaDB root-user password: " pmdb
 #read -p "Enter a name for the new mariaDB database: " newdb
-newdb=$(echo "wordpress")
+#newdb=$(echo "wordpress")
 echo "Created new database - $newdb"
 #read -p "Enter username of the new database: " userdb
-userdb=$(echo "sadmindb")
+#userdb=$(echo "sadmindb")
 echo "Created wordpress admin - $userdb"
 #read -p "Enter the password for user of the new database: " userpass
-userpass=$(echo "Aa123456")
+#userpass=$(echo "Aa123456")
 echo "WARNING: Created standard password: $userpass. Please, change the password after installation!"
 #echo "Data saved in the system!"
 

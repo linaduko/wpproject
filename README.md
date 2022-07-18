@@ -14,8 +14,9 @@
 <i>After the completion of the <b>wplamp.bash</b> script, it was necessary to supplement it with a file backup script and merge everything. The guys will talk about this later. </i>
 <p></p>
 <p> ✌ Max's comment </p>
-<i>In this project we use script, that makes backup of MySQL database and files of site (file backupdb.sh).
-We also used the task scheduler <b>cron</b> for daily backups in automatic mode (file cron.sh).</i>
+<i>Before you start our project, you to check and change perem.sh file.</i> 
+<i>In this project we use script, that makes backup of MySQL database and files of site (file backupdb.sh).</i>
+<i>We also used the task scheduler <b>cron</b> for daily backups in automatic mode (file cron.sh).</i>
 <p></p>
 <p style="color: #5e9ca0;"> 🥔 Stas's comment </p>
 <i>For convenience, we have combined the entire process into 1 script. The script works - you rest!</i>
