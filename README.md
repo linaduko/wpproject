@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/101510056/179406119-32c01441-57c0-43b2-aa69-1284dc3f8c63.png">
 <h2 style="color: #2e6c80;">How to use the wpproject:</h2>
 <p> ↘ Download the repository to your PC. </p>
-<p>  🚀 Next, run the start script "<b>start_wpproject.sh</b>". </p>
+<p>  🚀 Next, run the start script "start_wpproject.sh". </p>
 <p> 🚬 Enjoy installation!</p>
 
 <h2 style="color: #5e9ca0;">What about our code? We'll tell you everything now! </h2>
@@ -14,8 +14,9 @@
 <i>After the completion of the <b>wplamp.bash</b> script, it was necessary to supplement it with a file backup script and merge everything. The guys will talk about this later. </i>
 <p></p>
 <p> ✌ Max's comment </p>
-<i>In this project we use script, that makes backup of MySQL database and files of site (file backupdb.sh).
-We also used the task scheduler <b>cron</b> for daily backups in automatic mode (file cron.sh).</i>
+<i>Before you start our project, you to check and change perem.sh file.</i> 
+<i>In this project we use script, that makes backup of MySQL database and files of site (file backupdb.sh).</i>
+<i>We also used the task scheduler <b>cron</b> for daily backups in automatic mode (file cron.sh).</i>
 <p></p>
 <p style="color: #5e9ca0;"> 🥔 Stas's comment </p>
 <i>For convenience, we have combined the entire process into 1 script. The script works - you rest!</i>

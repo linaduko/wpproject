@@ -13,7 +13,7 @@ else
         echo "Warning, get root rights or check the correctness of the entered data and try again"
         exit 1
 fi
-
+ 
 #Обновление базы данных доступных пакетов
 echo "Data update..."
 sudo apt update
